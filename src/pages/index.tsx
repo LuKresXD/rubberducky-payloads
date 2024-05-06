@@ -18,8 +18,9 @@ export default function Home() {
         const fetchDownloads = async () => {
             const res = await fetch('/api/getDownloads');
             const data = await res.json();
-            const downloadMap = {};
-            data.forEach(data => {
+            const downloadMap: { [key: string]: number } = {};
+
+            data.forEach((data: { scriptName: string, count: number }) => {
                 downloadMap[data.scriptName] = data.count;
             });
             setDownloads(downloadMap);
