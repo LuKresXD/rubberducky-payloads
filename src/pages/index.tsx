@@ -36,7 +36,12 @@ export default function Home() {
             },
             body: JSON.stringify({ scriptName })
         });
-        setDownloads(prev => ({ ...prev, [scriptName]: prev[scriptName] + 1 }));
+        setDownloads(prev => {
+            const updatedDownloads = { ...prev };
+            updatedDownloads[scriptName] = (prev[scriptName] || 0) + 1;
+            return updatedDownloads;
+        });
+
     };
 
     useEffect(() => {
