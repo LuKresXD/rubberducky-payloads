@@ -12,7 +12,7 @@ import Typewriter from 'typewriter-effect';
 export default function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [pageLoad, setPageLoad] = useState(false);
-    const [downloads, setDownloads] = useState({});
+    const [downloads, setDownloads] = useState<{ [key: string]: number }>({});
 
     useEffect(() => {
         const fetchDownloads = async () => {
