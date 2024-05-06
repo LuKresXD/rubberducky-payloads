@@ -1,0 +1,40 @@
+{
+  "name": "LuKres.dev",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start -p 3002",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "framer-motion": "^11.0.3",
+    "next": "14.1.0",
+    "pattern.css": "^1.0.0",
+    "react": "^18",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18",
+    "react-fast-marquee": "^1.6.3",
+    "react-intersection-observer": "^9.5.3",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7",
+    "typewriter-effect": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
