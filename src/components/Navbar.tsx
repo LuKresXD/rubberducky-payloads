@@ -39,12 +39,9 @@ export default function Navbar() {
                                 <button onClick={() => window.location.href = '/'} className="p-2 duration-300 text-text text-lg font-medium hover:bg-secondary font-leaguespartan rounded-md">
                                 Home
                             </button>
-                            <button onClick={() => window.location.href = '/history'} className="p-2 duration-300 text-text text-lg font-medium hover:bg-secondary font-leaguespartan rounded-md">
-                                History
-                            </button>
                         </div>
                         <div className="min-[330px]:flex hidden flex-row gap-2 items-center">
-                            <a draggable={false} href="https://github.com/LuKresXD/phishing-website-detector" target="_blank" className="p-2 duration-300 text-text text-lg font-medium hover:bg-secondary font-leaguespartan rounded-md">
+                            <a draggable={false} href="https://github.com/LuKresXD/rubberducky-payloads" target="_blank" className="p-2 duration-300 text-text text-lg font-medium hover:bg-secondary font-leaguespartan rounded-md">
                                 Source
                             </a>
                         </div>
