@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="max-w-[76rem] w-full mx-auto xl:px-8 md:px-44 sm:px-16 px-8">
                     <div className="flex xl:flex-row flex-col gap-8 mt-6">
                         <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
-                            href="https://e-z.host" target="_blank"
+                            href="https://lukres.dev" target="_blank"
                             className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2 duration-500 ease-custom hover:border-blue-700"><img
                             className="rounded-t-md w-full rounded-x-md border-b-2 border-zinc-800 group-hover:border-blue-700 duration-500 ease-custom"
                             src="/ezhost.png" alt=""/>
@@ -64,7 +64,7 @@ export default function Home() {
                             </div>
                         </a></div>
                         <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
-                            href="https://e-z.bio" target="_blank"
+                            href="https://lukres.dev" target="_blank"
                             className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2 duration-500 ease-custom hover:border-blue-700"><img
                             className="rounded-t-md w-full rounded-x-md border-b-2 border-zinc-800 group-hover:border-blue-700 duration-500 ease-custom"
                             src="/ezbio.png" alt=""/>
@@ -83,7 +83,7 @@ export default function Home() {
                             </div>
                         </a></div>
                         <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
-                            href="https://discord.com/oauth2/authorize?client_id=1052415589995516014&amp;permissions=8&amp;scope=bot"
+                            href="https://lukres.dev"
                             target="_blank"
                             className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2 duration-500 ease-custom hover:border-blue-700"><img
                             className="rounded-t-md w-full rounded-x-md border-b-2 border-zinc-800 group-hover:border-blue-700 duration-500 ease-custom"
