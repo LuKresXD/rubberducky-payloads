@@ -36,12 +36,11 @@ export default function Home() {
             },
             body: JSON.stringify({ scriptName })
         });
-        setDownloads(prev => {
+        setDownloads((prev: { [key: string]: number }) => {
             const updatedDownloads = { ...prev };
             updatedDownloads[scriptName] = (prev[scriptName] || 0) + 1;
             return updatedDownloads;
         });
-
     };
 
     useEffect(() => {
