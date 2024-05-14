@@ -180,7 +180,7 @@ export default function Home() {
                             <div className="flex xl:flex-row flex-col gap-8 mt-6">
                                 <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
                                     onClick={() => handleDownload('Tdata MacOS stealer')}
-                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Tdata%20Stealer%20MacOS.txt"
+                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Tdata%20MacOS%20Stealer.txt"
                                     target="_blank"
                                     className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2
                                     duration-500 ease-custom hover:border-blue-700"><img
@@ -211,7 +211,7 @@ export default function Home() {
                                 </a></div>
                                 <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
                                     onClick={() => handleDownload('Tdata AppStore stealer')}
-                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Tdata%20Stealer%20MacOS.txt"
+                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Tdata%20AppStore%20Stealer.txt"
                                     target="_blank"
                                     className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2
                                     duration-500 ease-custom hover:border-blue-700"><img
@@ -243,7 +243,7 @@ export default function Home() {
                                 </a></div>
                                 <div className="flex w-full transform: translateY(0px); opacity: 1;"><a
                                     onClick={() => handleDownload('Tdata Windows stealer')}
-                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Password%20Stealer.txt"
+                                    href="https://github.com/LuKresXD/rubberducky-payloads/blob/main/payloads/Tdata%20Windows%20Stealer.txt"
                                     target="_blank"
                                     className="group rounded-md border-2 bg-zinc-900 border-zinc-800 hover:-translate-y-2
                                     duration-500 ease-custom hover:border-blue-700"><img
