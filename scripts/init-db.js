@@ -9,6 +9,9 @@ async function initializeDatabase() {
         await Download.create({ scriptName: 'WinRM', count: 0 });
         await Download.create({ scriptName: 'IP grabber', count: 0 });
         await Download.create({ scriptName: 'Password Stealer', count: 0 });
+        await Download.create({ scriptName: 'Tdata MacOS stealer', count: 0 });
+        await Download.create({ scriptName: 'Tdata AppStore stealer', count: 0 });
+        await Download.create({ scriptName: 'Tdata Windows stealer', count: 0 });
 
         console.log('Initial data seeded!');
     } catch (error) {

