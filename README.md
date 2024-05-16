@@ -1,7 +1,5 @@
 # Payload Repository 💻
 
-This project is an Internal Assignment on computer science.
-
 ## Description
 The Payload Repository is a web application designed to provide various scripts for system penetration testing and security assessments. These scripts enable users to perform actions such as setting up backdoors, grabbing IP information, and stealing passwords. Built with Next.js and TailwindCSS, this application is an essential tool for security professionals and enthusiasts.
 
