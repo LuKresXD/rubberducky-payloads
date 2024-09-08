@@ -6,14 +6,18 @@ async function initializeDatabase() {
         await sequelize.sync({ force: true });
         console.log('Database and tables created!');
 
-        await Download.create({ scriptName: 'WinRM', count: 0 });
-        await Download.create({ scriptName: 'IP grabber', count: 0 });
-        await Download.create({ scriptName: 'Password Stealer', count: 0 });
-        await Download.create({ scriptName: 'Tdata MacOS stealer', count: 0 });
-        await Download.create({ scriptName: 'Tdata AppStore stealer', count: 0 });
-        await Download.create({ scriptName: 'Tdata Windows stealer', count: 0 });
+        // Function to generate a random number between min and max (inclusive)
+        const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-        console.log('Initial data seeded!');
+        // Create initial records with random download counts
+        await Download.create({ scriptName: 'WinRM', count: getRandomInt(50, 200) });
+        await Download.create({ scriptName: 'IP grabber', count: getRandomInt(40, 180) });
+        await Download.create({ scriptName: 'Password Stealer', count: getRandomInt(60, 220) });
+        await Download.create({ scriptName: 'Tdata MacOS stealer', count: getRandomInt(30, 150) });
+        await Download.create({ scriptName: 'Tdata AppStore stealer', count: getRandomInt(25, 140) });
+        await Download.create({ scriptName: 'Tdata Windows stealer', count: getRandomInt(35, 170) });
+
+        console.log('Initial data seeded with random download counts!');
     } catch (error) {
         console.error('Failed to initialize database:', error);
     }
