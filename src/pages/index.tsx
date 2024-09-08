@@ -31,14 +31,15 @@ export default function Home() {
         fetchDownloads();
     }, []);
 
+
     const onDownload = useCallback(async (scriptName: string, url: string) => {
         try {
-            const newCount = await handleDownload(scriptName);
-
-            setDownloads((prev) => ({
+            setDownloads(prev => ({
                 ...prev,
-                [scriptName]: newCount
+                [scriptName]: (prev[scriptName] || 0) + 1
             }));
+
+            const newCount = await handleDownload(scriptName);
 
             const link = document.createElement('a');
             link.href = url;
@@ -48,6 +49,10 @@ export default function Home() {
             document.body.removeChild(link);
         } catch (error) {
             console.error('Error handling download:', error);
+            setDownloads(prev => ({
+                ...prev,
+                [scriptName]: prev[scriptName] - 1
+            }));
         }
     }, []);
 
