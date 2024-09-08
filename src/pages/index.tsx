@@ -252,7 +252,7 @@ export default function Home() {
                                     alt=""/>
                                     <div className="p-4"><h2
                                         className="text-blue-100 font-bold text-center sm:text-2xl text-2xl font-poppins">Tdata
-                                        Windows stealer</h2>
+                                        Windows stealerrr</h2>
                                         <p className="text-blue-100 font-semibold text-center sm:text-base text-sm font-poppins mt-1">
                                             This script is the same as previous one but for telegram on Windows
                                         </p>
