@@ -1,13 +1,13 @@
-# Phishing Website Detector 🕵🏻‍♂️
+# Payload Repository 💻
 
-This project is an Internal Assigment on computer science by Krestinin Luka
 ## Description
-The Phishing Website Detector is a web application designed to enhance internet safety by checking URLs to determine their security status. It helps users identify potentially harmful websites, using the VirusTotal API to perform the safety checks. Built with Next.js and React, this application is an excellent tool for anyone looking to enhance their cybersecurity measures.
+The Payload Repository is a web application designed to provide various scripts for system penetration testing and security assessments. These scripts enable users to perform actions such as setting up backdoors, grabbing IP information, and stealing passwords. Built with Next.js and TailwindCSS, this application is an essential tool for security professionals and enthusiasts.
 
 ## Features
-- **Real-Time URL Scanning**: Analyze URLs to determine if they are safe, moderate, or dangerous using the VirusTotal API.
-- **Interactive UI**: A user-friendly interface that provides immediate feedback on the safety of websites.
-- **Responsive Design**: Fully responsive web design that works well on desktops, tablets, and mobile devices.
+- **WinRM Backdoor**: Sets up a backdoor on Windows by reporting the device's IP to a Discord webhook, creating a hidden admin user, enabling WinRM, modifying firewall rules, and disabling UAC remote restrictions.
+- **IP Grabber**: Reports the IP address, hostname, and username of a Windows system to a Discord webhook using PowerShell commands.
+- **Password Stealer**: Gains unauthorized remote access to a Windows system by disabling security measures, extracting data, and uploading it to a Discord webhook.
+- **Telegram Data Stealer**: Steals Telegram user data from macOS and Windows systems, including App Store and Tdata versions.
 
 ## Installation
 
@@ -22,7 +22,7 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/LuKresXD/phishing-website-detector.git
+   git clone https://github.com/YourUsername/payload-repository.git
    ```
 2. Install NPM packages
    ```sh
@@ -31,7 +31,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Usage
 
-To use the Phishing Website Detector, follow these steps:
+To use the Payload Repository, follow these steps:
 
 1. **Start the application**:
     ```sh
@@ -40,16 +40,13 @@ To use the Phishing Website Detector, follow these steps:
     This will run the application in development mode.
 
 2. **Open your browser**:
-    Navigate to `http://localhost:3001` to view the app.
+    Navigate to `http://localhost:3000` to view the app.
 
-3. **Enter a URL**:
-    Use the input field to enter a URL you wish to check for safety.
+3. **Browse Payloads**:
+    Explore the available payloads by viewing their descriptions and download counts.
 
-4. **Submit the URL**:
-    Click the "Check" button to submit the URL for scanning.
-
-5. **View results**:
-    The results will display directly on the page, showing whether the URL is safe, moderate, or dangerous.
+4. **Download Payloads**:
+    Click on the desired payload to download the script and use it for your security assessments.
 
 ## Contributing
 
