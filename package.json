@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "axios": "^1.6.8",
+    "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "framer-motion": "^11.0.3",
@@ -24,6 +25,7 @@
     "react-intersection-observer": "^9.5.3",
     "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7",
+    "tailwind-merge": "^2.5.4",
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {

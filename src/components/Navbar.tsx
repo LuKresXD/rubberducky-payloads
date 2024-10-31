@@ -4,18 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const handleClickScroll = () => {
-        const element = document.getElementById('about');
-        if (element) {
-            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ 
-                top: elementPosition - 50,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    const handleClickScroll2 = () => {
-        const element = document.getElementById('projects');
+        const element = document.getElementById('RubberDucky Payloads');
         if (element) {
             const elementPosition = element.getBoundingClientRect().top + window.scrollY;
             window.scrollTo({ 
@@ -44,7 +33,7 @@ export default function Navbar() {
                             </button>
                         </div>
                         <div className="min-[330px]:flex hidden flex-row gap-2 items-center">
-                            <a draggable={false} href="https://github.com/lukresxd/lukres.dev" target="_blank"
+                            <a draggable={false} href="https://github.com/LuKresXD/rubberducky-payloads" target="_blank"
                                className="p-2 duration-300 text-text text-lg font-medium hover:bg-secondary font-leaguespartan rounded-md">
                                 Source
                             </a>

@@ -16,6 +16,7 @@ async function initializeDatabase() {
         await Download.create({ scriptName: 'Tdata MacOS stealer', count: getRandomInt(30, 150) });
         await Download.create({ scriptName: 'Tdata AppStore stealer', count: getRandomInt(25, 140) });
         await Download.create({ scriptName: 'Tdata Windows stealer', count: getRandomInt(35, 170) });
+        await Download.create({ scriptName: 'Windows Key Grabber', count: getRandomInt(35, 170) });
 
         console.log('Initial data seeded with random download counts!');
     } catch (error) {
