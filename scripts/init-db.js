@@ -6,6 +6,8 @@ async function initializeDatabase() {
         await sequelize.sync({ force: true });
         console.log('Database and tables created!');
 
+        const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
         // Standardized download count ranges
         const ranges = {
             popular: { min: 150, max: 300 },      // Popular tools
@@ -28,7 +30,8 @@ async function initializeDatabase() {
             // Specialized Telegram tools
             { scriptName: 'Tdata MacOS stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
             { scriptName: 'Tdata AppStore stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
-            { scriptName: 'Tdata Windows stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) }
+            { scriptName: 'Tdata Windows stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
+            { scriptName: 'VSCode Light Mode', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) }
         ];
 
         // Bulk create all records
