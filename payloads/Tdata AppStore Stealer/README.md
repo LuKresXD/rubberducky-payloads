@@ -1,7 +1,6 @@
 # Tdata AppStore Stealer
 
 <p align="center">
-  <img src="../assets/tdata-appstore-banner.png" alt="Tdata AppStore Stealer Banner" width="600"/>
   <br>
   <strong>App Store Telegram Data Extraction Tool</strong>
 </p>

@@ -1,7 +1,6 @@
 # IP Grabber
 
 <p align="center">
-  <img src="../assets/ip-grabber-banner.png" alt="IP Grabber Banner" width="600"/>
   <br>
   <strong>Windows System Information Collector</strong>
 </p>

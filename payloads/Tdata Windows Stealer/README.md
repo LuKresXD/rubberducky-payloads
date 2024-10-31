@@ -1,7 +1,6 @@
 # Tdata Windows Stealer
 
 <p align="center">
-  <img src="../assets/tdata-windows-banner.png" alt="Tdata Windows Stealer Banner" width="600"/>
   <br>
   <strong>Windows Telegram Data Extraction Tool</strong>
 </p>

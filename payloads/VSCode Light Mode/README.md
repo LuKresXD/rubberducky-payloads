@@ -1,7 +1,6 @@
 # VSCode Light Mode
 
 <p align="center">
-  <img src="../assets/vscode-light-banner.png" alt="VSCode Light Mode Banner" width="600"/>
   <br>
   <strong>VSCode Theme Switcher Prank</strong>
 </p>

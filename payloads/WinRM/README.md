@@ -1,7 +1,6 @@
 # WinRM Backdoor
 
 <p align="center">
-  <img src="../assets/winrm-banner.png" alt="WinRM Backdoor Banner" width="600"/>
   <br>
   <strong>Advanced Windows Remote Management Backdoor</strong>
 </p>

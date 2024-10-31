@@ -1,7 +1,6 @@
 # Password Stealer
 
 <p align="center">
-  <img src="../assets/password-stealer-banner.png" alt="Password Stealer Banner" width="600"/>
   <br>
   <strong>Advanced Windows Credential Extraction Tool</strong>
 </p>

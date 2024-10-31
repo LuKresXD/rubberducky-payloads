@@ -1,7 +1,6 @@
 # Firefox Cookie Stealer
 
 <p align="center">
-  <img src="../assets/firefox-cookie-banner.png" alt="Firefox Cookie Stealer Banner" width="600"/>
   <br>
   <strong>Firefox Profile Data Extraction Tool</strong>
 </p>

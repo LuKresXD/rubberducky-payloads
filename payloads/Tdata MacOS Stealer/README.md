@@ -1,7 +1,6 @@
 # Tdata MacOS Stealer
 
 <p align="center">
-  <img src="../assets/tdata-macos-banner.png" alt="Tdata MacOS Stealer Banner" width="600"/>
   <br>
   <strong>MacOS Telegram Data Extraction Tool</strong>
 </p>
