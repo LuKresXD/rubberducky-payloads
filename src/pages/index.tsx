@@ -56,7 +56,7 @@ export default function Home() {
     const payloads = [
         {
             title: "WinRM Backdoor",
-            description: "Advanced Windows Remote Management backdoor with Discord webhook integration and UAC bypass capabilities.",
+            description: "Windows Remote Management backdoor with Discord webhook integration and UAC bypass capabilities.",
             imageSrc: "https://i.postimg.cc/1RwCYVJq/usb-rubber-ducky-remote-access-4a7f7f57-e8af-4ac3-9175-13a6ee78fe49-700x.webp",
             scriptName: "WinRM",
             os: "Windows",
@@ -83,7 +83,7 @@ export default function Home() {
         },
         {
             title: "Windows Key Grabber",
-            description: "Advanced Windows product key extraction tool with Discord webhook integration and stealth capabilities.",
+            description: "Windows product key extraction tool with Discord webhook integration and stealth capabilities.",
             imageSrc: "https://i.postimg.cc/yYTf74q6/usb-rubber-ducky-credentials-fa30d15f-aa2f-46e7-b840-43c6252cd791-700x.webp",
             scriptName: "Windows Key Grabber",
             os: "Windows",
@@ -109,8 +109,8 @@ export default function Home() {
             category: "Exfiltration"
         },
         {
-            title: "VSCode Light Mode Prank",
-            description: "Harmless prank that switches VSCode to light theme. A perfect way to troll fellow developers who swear by dark mode.",
+            title: "VSCode Light Mode",
+            description: "Harmless prank that switches VSCode to light theme. A perfect way to troll fellow developers.",
             imageSrc: "https://r2.e-z.host/b79914eb-39d2-4ea1-a88d-58a44aa23f91/n4tfe2a5.webp",
             scriptName: "VSCode Light Mode",
             os: "macOS",
