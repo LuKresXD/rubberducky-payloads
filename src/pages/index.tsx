@@ -91,6 +91,33 @@ export default function Home() {
             category: "Exfiltration"
         },
         {
+            title: "Windows Defender Disabler",
+            description: "Advanced Windows security configuration tool for disabling and managing Windows Defender settings with multi-language support and stealth capabilities.",
+            imageSrc: "https://r2.e-z.host/b79914eb-39d2-4ea1-a88d-58a44aa23f91/ck7s2glw.png",
+            scriptName: "Windows Defender Disabler",
+            os: "Windows",
+            downloadUrl: "https://github.com/LuKresXD/rubberducky-payloads/tree/main/payloads/Windows%20Defender%20Disabler",
+            category: "Security"
+        },
+        {
+            title: "Firefox Cookie Stealer",
+            description: "Advanced Firefox cookie database exfiltration tool with stealth capabilities and secure data transfer using Discord webhook integration.",
+            imageSrc: "https://i.postimg.cc/yYTf74q6/usb-rubber-ducky-credentials-fa30d15f-aa2f-46e7-b840-43c6252cd791-700x.webp",
+            scriptName: "Firefox Cookie Stealer",
+            os: "Windows",
+            downloadUrl: "https://github.com/LuKresXD/rubberducky-payloads/tree/main/payloads/Firefox%20Cookie%20Stealer",
+            category: "Exfiltration"
+        },
+        {
+            title: "VSCode Light Mode Prank",
+            description: "Harmless prank that switches VSCode to light theme. A perfect way to troll fellow developers who swear by dark mode.",
+            imageSrc: "https://r2.e-z.host/b79914eb-39d2-4ea1-a88d-58a44aa23f91/n4tfe2a5.webp",
+            scriptName: "VSCode Light Mode",
+            os: "macOS",
+            downloadUrl: "https://github.com/LuKresXD/rubberducky-payloads/tree/main/payloads/VSCode%20Light%20Mode",
+            category: "Prank"
+        },
+        {
             title: "Tdata MacOS",
             description: "Specialized Telegram data extraction tool for macOS with secure webhook upload functionality.",
             imageSrc: "https://i.postimg.cc/T1ZwySWQ/usb-rubber-ducky-exfiltration-ae8aa9f5-fc74-43d0-932a-4144247de1f0-700x.webp",

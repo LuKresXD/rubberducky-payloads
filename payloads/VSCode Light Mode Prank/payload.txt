@@ -1,0 +1,89 @@
+REM #
+REM # Title:           VSCode Light Mode Prank
+REM # Author:          LuKres
+REM # Version:         1.0
+REM # Category:        Prank
+REM # Target:          macOS (All Versions)
+REM #
+REM # Description:
+REM #                 A harmless prank that:
+REM #                 1) Opens VSCode settings
+REM #                 2) Navigates to theme settings
+REM #                 3) Changes theme to light mode
+REM #                 4) Closes settings to preserve change
+REM #
+REM # WARNING:        May cause temporary eye strain and developer rage
+REM #
+REM # TESTED ON
+REM # =========
+REM # macOS Monterey 12.0+
+REM # macOS Ventura 13.0+
+REM # macOS Sonoma 14.0+
+REM #
+REM # REQUIREMENTS
+REM # ============
+REM # - Visual Studio Code must be installed
+REM # - Target user must have used VSCode at least once
+REM #
+
+DELAY 2000
+
+REM Function to ensure we reach bottom of theme list
+FUNCTION SELECT_LIGHT_THEME()
+    REM Loop enough times to reach bottom themes
+    VAR $count = 0
+    WHILE ($count < 25)
+        DOWN
+        DELAY 50
+        $count = ($count + 1)
+    END_WHILE
+END_FUNCTION
+
+REM Open VSCode
+COMMAND SPACE
+DELAY 500
+STRING Visual Studio Code
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Open Settings
+COMMAND ,
+DELAY 500
+
+REM Search for theme settings
+STRING theme
+DELAY 500
+ENTER
+DELAY 500
+
+REM Navigate to color theme dropdown
+REM Each TAB ensures we hit the right setting regardless of VSCode version
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+
+REM Open theme selection
+ENTER
+ENTER
+DELAY 500
+
+REM Select light theme
+SELECT_LIGHT_THEME()
+ENTER
+DELAY 500
+
+REM Close settings window to save changes
+COMMAND w
+DELAY 500
+
+REM Optional: Add evil laugh
+REM STRING echo "Embrace the light! 😈" | say
+REM ENTER

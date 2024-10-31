@@ -6,17 +6,35 @@ async function initializeDatabase() {
         await sequelize.sync({ force: true });
         console.log('Database and tables created!');
 
-        // Function to generate a random number between min and max (inclusive)
-        const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+        // Standardized download count ranges
+        const ranges = {
+            popular: { min: 150, max: 300 },      // Popular tools
+            common: { min: 80, max: 200 },        // Commonly used tools
+            specialized: { min: 40, max: 120 }    // More specialized tools
+        };
 
-        // Create initial records with random download counts
-        await Download.create({ scriptName: 'WinRM', count: getRandomInt(50, 200) });
-        await Download.create({ scriptName: 'IP grabber', count: getRandomInt(40, 180) });
-        await Download.create({ scriptName: 'Password Stealer', count: getRandomInt(60, 220) });
-        await Download.create({ scriptName: 'Tdata MacOS stealer', count: getRandomInt(30, 150) });
-        await Download.create({ scriptName: 'Tdata AppStore stealer', count: getRandomInt(25, 140) });
-        await Download.create({ scriptName: 'Tdata Windows stealer', count: getRandomInt(35, 170) });
-        await Download.create({ scriptName: 'Windows Key Grabber', count: getRandomInt(35, 170) });
+        // Create initial records with categorized random download counts
+        const initialPayloads = [
+            // Popular security tools
+            { scriptName: 'WinRM', count: getRandomInt(ranges.popular.min, ranges.popular.max) },
+            { scriptName: 'IP grabber', count: getRandomInt(ranges.popular.min, ranges.popular.max) },
+            { scriptName: 'Password Stealer', count: getRandomInt(ranges.popular.min, ranges.popular.max) },
+
+            // Common system tools
+            { scriptName: 'Windows Key Grabber', count: getRandomInt(ranges.common.min, ranges.common.max) },
+            { scriptName: 'Windows Defender Disabler', count: getRandomInt(ranges.common.min, ranges.common.max) },
+            { scriptName: 'Firefox Cookie Stealer', count: getRandomInt(ranges.common.min, ranges.common.max) },
+
+            // Specialized Telegram tools
+            { scriptName: 'Tdata MacOS stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
+            { scriptName: 'Tdata AppStore stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
+            { scriptName: 'Tdata Windows stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) }
+        ];
+
+        // Bulk create all records
+        await Promise.all(
+            initialPayloads.map(payload => Download.create(payload))
+        );
 
         console.log('Initial data seeded with random download counts!');
     } catch (error) {
