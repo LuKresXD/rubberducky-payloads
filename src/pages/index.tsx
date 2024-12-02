@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import { Filter } from 'lucide-react';
+//import { Windows, Apple } from '@/components/icons';
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { handleDownload } from '../utils/downloads';
 import { GridPattern } from "@/components/GridPattern";
 import PayloadCard from '@/components/PayloadCard';
@@ -20,16 +23,36 @@ const Apple = () => (
         <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.539 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" fill="currentColor"/>
     </svg>
 );
-
 export default function Home() {
     const [isLoading, setIsLoading] = useState(false);
+    const [pageLoad, setPageLoad] = useState(false);
     const [selectedOS, setSelectedOS] = useState<OSType>('all');
     const [downloads, setDownloads] = useState<{ [key: string]: number }>({});
     const [searchQuery, setSearchQuery] = useState('');
 
-    const getItemLayoutId = (scriptName: string) => `payload-${scriptName}`;
+    const [ref, inView] = useInView({
+        threshold: 0.1,
+        triggerOnce: true,
+    });
 
-    // Keep your existing payloads array
+    useEffect(() => {
+        const fetchDownloads = async () => {
+            try {
+                const res = await fetch('/api/getDownloads');
+                const data = await res.json();
+                const downloadMap: { [key: string]: number } = {};
+                data.forEach((item: { scriptName: string, count: number }) => {
+                    downloadMap[item.scriptName] = item.count;
+                });
+                setDownloads(downloadMap);
+            } catch (error) {
+                console.error('Error fetching download counts:', error);
+            }
+        };
+        fetchDownloads();
+        setPageLoad(true);
+    }, []);
+
     const payloads = [
         {
             title: "WinRM Backdoor",
@@ -48,15 +71,6 @@ export default function Home() {
             os: "Windows",
             downloadUrl: "https://github.com/LuKresXD/rubberducky-payloads/tree/main/payloads/IP%20grabber",
             category: "Reconnaissance"
-        },
-        {
-            title: "SSH Key Grabber",
-            description: "Advanced extraction tool for SSH private keys with multi-method scanning, pattern matching, and secure data transmission via Discord webhook.",
-            imageSrc: "https://i.postimg.cc/yYTf74q6/usb-rubber-ducky-credentials-fa30d15f-aa2f-46e7-b840-43c6252cd791-700x.webp",
-            scriptName: "SSH Key Grabber",
-            os: "Windows",
-            downloadUrl: "https://github.com/LuKresXD/rubberducky-payloads/tree/main/payloads/SSH%20Key%20Grabber",
-            category: "Exfiltration"
         },
         {
             title: "Password Stealer",
@@ -131,22 +145,6 @@ export default function Home() {
             category: "Exfiltration"
         }
     ];
-    useEffect(() => {
-        const fetchDownloads = async () => {
-            try {
-                const res = await fetch('/api/getDownloads');
-                const data = await res.json();
-                const downloadMap: { [key: string]: number } = {};
-                data.forEach((item: { scriptName: string, count: number }) => {
-                    downloadMap[item.scriptName] = item.count;
-                });
-                setDownloads(downloadMap);
-            } catch (error) {
-                console.error('Error fetching download counts:', error);
-            }
-        };
-        fetchDownloads();
-    }, []);
 
     const onDownload = useCallback(async (scriptName: string, url: string) => {
         try {
@@ -185,102 +183,108 @@ export default function Home() {
             <Head>
                 <title>RubberDucky Payloads ⌨️</title>
                 <meta name="description" content="Advanced RubberDucky payloads collection by LuKres"/>
-                <meta property='theme-color' content='#0a0a0a'/>
+                <meta property='theme-color' content='#17171a'/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/keyboard.ico"/>
             </Head>
 
             <Navbar />
 
-            <main className="relative min-h-screen bg-[#0a0a0a]">
+            <main className="relative min-h-screen pattern-grid-lg overflow-x-hidden">
                 <GridPattern
                     width={50}
                     height={50}
                     x={-1}
                     y={-1}
-                    className="z-[-5] opacity-50"
+                    className='z-[-5]'
                 />
 
-                <div className="max-w-7xl mx-auto px-6 pt-20">
-                    <motion.div
-                        className="text-center mb-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                        <h1 className="text-6xl font-bold mb-4 text-white">
+                <motion.div
+                    className="relative bg-gradient-to-br from-primary to-secondary border-b border-accent px-6 py-24"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <div className="max-w-4xl mx-auto text-center">
+                        <motion.h1
+                            className="text-4xl md:text-6xl font-bold mb-6 text-white"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                        >
                             RubberDucky Payloads ⌨️
-                        </h1>
-                        <p className="text-xl text-gray-400">
+                        </motion.h1>
+                        <motion.p
+                            className="text-xl md:text-2xl text-white/90 mb-8"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                        >
                             Advanced collection of penetration testing and security assessment tools
-                        </p>
-                    </motion.div>
+                        </motion.p>
 
-                    <motion.div
-                        className="flex flex-col sm:flex-row gap-4 mb-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                        <input
-                            type="text"
-                            placeholder="Search payloads..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="flex-1 px-6 py-3 bg-[#111111] text-white placeholder-gray-500 border border-accent/20 rounded-lg focus:outline-none focus:border-accent/50 transition-colors"
-                        />
+                        <motion.div
+                            className="flex flex-col sm:flex-row justify-center gap-4 mb-8"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <div className="relative flex-1 max-w-md">
+                                <input
+                                    type="text"
+                                    placeholder="Search payloads..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full px-4 py-2 bg-secondary text-white placeholder-white/50 border border-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                                />
+                            </div>
 
-                        <div className="flex gap-2">
-                            <motion.button
-                                onClick={() => setSelectedOS('all')}
-                                className={`p-3 rounded-lg border border-accent/20 transition-colors text-white ${
-                                    selectedOS === 'all' ? 'bg-accent/20' : 'hover:bg-accent/10'
-                                }`}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Filter className="w-5 h-5" />
-                            </motion.button>
-                            <motion.button
-                                onClick={() => setSelectedOS('Windows')}
-                                className={`p-3 rounded-lg border border-accent/20 transition-colors text-white ${
-                                    selectedOS === 'Windows' ? 'bg-accent/20' : 'hover:bg-accent/10'
-                                }`}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Windows />
-                            </motion.button>
-                            <motion.button
-                                onClick={() => setSelectedOS('macOS')}
-                                className={`p-3 rounded-lg border border-accent/20 transition-colors text-white ${
-                                    selectedOS === 'macOS' ? 'bg-accent/20' : 'hover:bg-accent/10'
-                                }`}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Apple />
-                            </motion.button>
-                        </div>
-                    </motion.div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setSelectedOS('all')}
+                                    className={`px-4 py-2 rounded-lg border border-accent transition-all duration-300 ${
+                                        selectedOS === 'all' ? 'bg-accent text-white' : 'bg-secondary text-white hover:bg-accent/50'
+                                    }`}
+                                >
+                                    <Filter className="w-5 h-5" />
+                                </button>
+                                <button
+                                    onClick={() => setSelectedOS('Windows')}
+                                    className={`px-4 py-2 rounded-lg border border-accent transition-all duration-300 ${
+                                        selectedOS === 'Windows' ? 'bg-accent text-white' : 'bg-secondary text-white hover:bg-accent/50'
+                                    }`}
+                                >
+                                    <Windows />
+                                </button>
+                                <button
+                                    onClick={() => setSelectedOS('macOS')}
+                                    className={`px-4 py-2 rounded-lg border border-accent transition-all duration-300 ${
+                                        selectedOS === 'macOS' ? 'bg-accent text-white' : 'bg-secondary text-white hover:bg-accent/50'
+                                    }`}
+                                >
+                                    <Apple />
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </motion.div>
 
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                        layout
-                    >
-                        <AnimatePresence mode="popLayout">
+                <div className="max-w-7xl mx-auto px-6 py-16">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={selectedOS + searchQuery}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        >
                             {filteredPayloads.map((payload, index) => (
                                 <motion.div
                                     key={payload.scriptName}
-                                    layoutId={getItemLayoutId(payload.scriptName)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    transition={{
-                                        layout: { duration: 0.3 },
-                                        opacity: { duration: 0.2 },
-                                        y: { duration: 0.3 },
-                                    }}
+                                    transition={{ delay: index * 0.1 }}
                                 >
                                     <PayloadCard
                                         {...payload}
@@ -289,27 +293,27 @@ export default function Home() {
                                     />
                                 </motion.div>
                             ))}
-                        </AnimatePresence>
-                    </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
 
                     {filteredPayloads.length === 0 && (
                         <motion.div
-                            className="text-center py-32"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
+                            className="text-center py-16"
                         >
-                            <p className="text-xl text-gray-500">No payloads found matching your criteria</p>
+                            <p className="text-xl text-white/60">No payloads found matching your criteria</p>
                         </motion.div>
                     )}
                 </div>
 
                 {isLoading && (
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-                        <div className="w-16 h-16 border-4 border-t-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-16 h-16 border-4 border-t-4 border-accent border-t-white rounded-full animate-spin"></div>
                     </div>
                 )}
             </main>
+            <Footer />
         </>
     );
 }
