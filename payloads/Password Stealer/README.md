@@ -48,3 +48,22 @@ The Password Stealer is an advanced credential extraction tool designed for Wind
     - Extracts credentials
     - Sends data via webhook
     - Cleans traces
+
+## 🛡️ Defense
+
+**Detection**
+- Security service stops (Event ID 7036) for antivirus/EDR processes
+- LSASS memory access by non-system tools (Sysmon Event ID 10)
+- Credential-dumping patterns (Mimikatz-like command lines)
+- Registry changes disabling Defender real-time protection
+- Outbound exfiltration of credential data (base64-encoded or compressed)
+
+**Mitigation**
+- Enable Credential Guard and LSA protection to isolate credential material
+- Application allowlisting to block credential-dumping tools
+- EDR with credential-theft detection (e.g. Microsoft Defender for Identity)
+- Disable plaintext credential storage in memory via Group Policy
+- Network segmentation to restrict outbound traffic from sensitive workstations
+- Regular credential rotation and multi-factor authentication
+
+**Weakness** — Windows caches credentials in memory for single sign-on, and administrative processes can disable security tooling.

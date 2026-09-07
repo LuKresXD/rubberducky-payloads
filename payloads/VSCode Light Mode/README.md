@@ -46,3 +46,13 @@ A harmless prank tool that switches VSCode to light theme - perfect for trolling
 - Harmless prank - only changes theme
 - Easily reversible
 - No permanent changes
+
+## 🛡️ Defense
+
+This payload is a benign prank that switches Visual Studio Code to its light theme. It poses no security threat: no data exfiltration, persistence, or system change, only a cosmetic user preference.
+
+**Detection** — a change to `settings.json` (`workbench.colorTheme`).
+
+**Mitigation** — none needed. Revert with Ctrl+Shift+P → "Preferences: Color Theme".
+
+**Weakness** — VS Code settings live in a plain JSON file any process with write access to the user profile can modify.

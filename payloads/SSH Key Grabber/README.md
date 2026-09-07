@@ -101,3 +101,20 @@ The SSH Key Grabber is an advanced penetration testing tool designed to locate a
 - Handles encrypted keys
 - Built-in rate limiting
 - Resource-aware operation
+## 🛡️ Defense
+
+**Detection**
+- File enumeration in home directories (`~/.ssh/`, `C:\Users\*\.ssh\`)
+- Reads of private key files (`id_rsa`, `id_dsa`, `id_ecdsa`)
+- A non-SSH-client process accessing SSH key files
+- Command patterns searching for keys (`find`, `grep`, `dir`)
+
+**Mitigation**
+- Protect private keys with strong passphrases (never passwordless)
+- Store keys in hardware (YubiKey, TPM) via FIDO2 / OpenSSH 8.2+
+- Restrict permissions on `~/.ssh/` (`chmod 700`)
+- Monitor private-key reads from non-SSH processes
+- Use a centralized SSH certificate authority instead of static keys
+- Run `ssh-agent` with time-based or confirmation constraints
+
+**Weakness** — SSH private keys often lack passphrases, carry loose permissions, and sit in predictable locations.

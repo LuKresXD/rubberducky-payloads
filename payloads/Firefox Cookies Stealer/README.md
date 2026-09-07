@@ -49,3 +49,19 @@ The Firefox Cookie Stealer is a specialized tool designed to extract and exfiltr
     - Extracts cookie database
     - Sends via webhook
     - Cleans traces
+## 🛡️ Defense
+
+**Detection**
+- File reads on Firefox profile directories (`%APPDATA%\Mozilla\Firefox\Profiles\*.default\cookies.sqlite`)
+- A non-browser process opening browser SQLite databases
+- Copy operations of `.sqlite` files to temporary locations
+- Outbound transmission of SQLite databases or extracted cookies
+
+**Mitigation**
+- Application allowlisting to restrict which processes can read browser profile directories
+- Encrypt Firefox data stores with a master password
+- Monitor cookie-database access from non-browser processes
+- Data-loss-prevention (DLP) rules for cookie/session-token exfiltration
+- Browser sandboxing to isolate cookie stores from userland processes
+
+**Weakness** — Firefox stores session cookies in unencrypted SQLite databases inside user-accessible directories.
