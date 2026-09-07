@@ -98,3 +98,19 @@ The Tdata AppStore Stealer specifically targets the App Store version of Telegra
 - Network encryption
 - File sanitization
 - Memory management
+## 🛡️ Defense
+
+**Detection**
+- Access to the Telegram `tdata` directory (`%APPDATA%\Telegram Desktop\tdata\` or `~/Library/Application Support/Telegram Desktop/tdata/`)
+- Copy operations of `D877F783D5D3EF8C*` key files and `map*` files
+- Exfiltration of small binary files (typically 1 KB–64 KB) to external destinations
+- A non-Telegram process accessing session files
+
+**Mitigation**
+- Enable Telegram's passcode lock (Settings → Privacy & Security → Passcode Lock)
+- Encrypt the Telegram data directory with third-party tools
+- Application allowlisting to restrict access to the session folder
+- Monitor `tdata` access from non-Telegram processes
+- Review active sessions regularly; use "Log Out Other Sessions" on suspicion
+
+**Weakness** — Telegram Desktop stores session authorization keys in plain files in `tdata`, so copying them hijacks the session.

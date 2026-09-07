@@ -121,3 +121,21 @@ To restore Windows Defender:
 - Regular security assessment required
 - Documentation of changes advised
 - Consider system stability impact
+## 🛡️ Defense
+
+**Detection**
+- Defender service stop (Event ID 7036, service `WinDefend`)
+- Real-time protection disabled (Event ID 5007)
+- Tamper Protection triggered (Event ID 5008)
+- Registry changes under `HKLM\SOFTWARE\Policies\Microsoft\Windows Defender`
+- PowerShell `Set-MpPreference -DisableRealtimeMonitoring $true`
+
+**Mitigation**
+- Enable Tamper Protection (blocks unauthorized configuration changes)
+- Restrict local admin rights using Privileged Access Workstations (PAW)
+- Monitor Defender service-state and configuration changes
+- Group Policy to enforce Defender settings and prevent local override
+- Application control to block Defender-disabling scripts
+- Deploy an EDR that does not rely solely on native Defender
+
+**Weakness** — Defender settings are modifiable through registry keys and PowerShell by processes with administrative privileges.

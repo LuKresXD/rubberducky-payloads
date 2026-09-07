@@ -59,3 +59,21 @@ This tool implements several security features:
 - Hidden user account creation
 - Firewall rule configuration
 - UAC bypass for remote access
+## 🛡️ Defense
+
+**Detection**
+- Event ID 4720 (new local administrator account) with a suspicious username
+- Event ID 7045 (WinRM service installed/started) right after a USB HID keyboard enumerates
+- Firewall rule addition (Event ID 2006) allowing inbound TCP/5985
+- Outbound HTTPS POST to a Discord webhook domain from `powershell.exe`
+- Registry write to `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy`
+
+**Mitigation**
+- Block or restrict USB HID keyboards via USBGuard or device-control policy
+- Disable the WinRM service where it is not required
+- Enable Credential Guard to protect LSASS and block credential extraction
+- Application allowlisting (AppLocker/WDAC) to stop unauthorized PowerShell
+- Egress filtering to block unknown webhook destinations (Discord, Slack, etc.)
+- Group Policy to restrict local administrator account creation
+
+**Weakness** — default Windows remote-management settings, permissive firewall rules, and administrative processes able to disable UAC remote restrictions.

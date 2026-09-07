@@ -47,3 +47,20 @@ The IP Grabber is a specialized reconnaissance tool designed to collect and repo
     - Local IP address
     - Computer name
     - Username
+
+## 🛡️ Defense
+
+**Detection**
+- `powershell.exe` spawned immediately after a USB HID keyboard enumerates
+- Outbound HTTPS POST to `discord.com` webhook endpoints
+- Unusual process ancestry: `explorer.exe` → `cmd.exe` → `powershell.exe` making a web request
+- PowerShell command line with `Invoke-WebRequest` or `System.Net.WebClient` to an external domain
+
+**Mitigation**
+- Application control/allowlisting (AppLocker or WDAC) to block unauthorized PowerShell
+- Device Guard to restrict script execution from removable media
+- Network egress filtering for Discord webhook domains unless explicitly allowed
+- PowerShell Constrained Language Mode for untrusted sources
+- Monitor for new process creation from HID-class devices
+
+**Weakness** — relies on unrestricted PowerShell execution and outbound network access to exfiltrate data.

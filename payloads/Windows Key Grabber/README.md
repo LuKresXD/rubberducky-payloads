@@ -156,3 +156,20 @@ The Windows Key Grabber is a specialized tool designed to extract and securely r
 - Enhanced error handling
 - Extended system information
 - Alternative transmission methods
+## 🛡️ Defense
+
+**Detection**
+- WMI queries for product-key info (`Get-WmiObject -Class Win32_ComputerSystemProduct`)
+- Registry reads from `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DigitalProductId`
+- Key-extraction commands (`wmic path softwarelicensingservice get OA3xOriginalProductKey`)
+- Unusual access to licensing-related registry keys and WMI classes
+
+**Mitigation**
+- Use Volume Licensing (KMS/MAK) instead of embedded OEM keys
+- Application allowlisting to block unauthorized WMI queries
+- Monitor for key-extraction command patterns
+- Restrict WMI namespace permissions for standard users
+- Deploy with generic install keys and activate via organizational KMS
+- Consider Subscription Activation or Azure AD-based licensing
+
+**Weakness** — Windows product keys sit in the registry and WMI in a recoverable form accessible to user-level processes.
