@@ -17,3 +17,8 @@ updates:
         applies-to: security-updates
         patterns:
           - "*"
+    ignore:
+      # Hold major bumps (they have broken the build before); handled manually.
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
